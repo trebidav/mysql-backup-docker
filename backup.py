@@ -62,7 +62,7 @@ for host in hosts:
 
         print("Backing up " + host["name"] +" to file "+path+"/" + host["name"] + "-" + timestamp + ".tar.gz" )
 
-        client.containers.run(image        = "docker-registry.vlp.cz:5000/xtrabackup", 
+        client.containers.run(image        = "davidtrebicky/xtrabackup", 
                           command      = [ "/bin/sh", "-c", "innobackupex --user="+host["user"]+" --password="+host["password"]+" --host="+host["name"]+" --stream=tar /var/lib/mysql | gzip - > /backup/"+host["name"]+"-"+timestamp+".tar.gz"],
                           remove       = True,
                           volumes_from = cont.id,
