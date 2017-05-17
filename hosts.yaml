@@ -1,0 +1,4 @@
+--- 
+- name: mysql     # name of the container
+  user: root      # mysql user
+  password: root  # mysql user password
