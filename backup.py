@@ -88,10 +88,6 @@ for host in hosts:
                           volumes      = {os.path.abspath(path): {'bind': '/backup', 'mode': 'rw'}}
                           )
 
-        # create file list of backed-up files - filename;filesize;ctime
-        with open(path + "/list.txt", "a") as l:
-            l.write(filename + ";" + os.path.getsize(path + "/" + filename)+ ";" + os.path.getctime(path + "/" + filename) + "\n")
-
     except Exception as exc:
         print(exc)
 
@@ -117,6 +113,12 @@ for host in hosts:
         print(exc)
         exit(1)
 
+    # create file list of backed-up files - filename;filesize;ctime
+    with open(path + "/list.txt", "a") as l:
+        l.write(filename + ";" + os.path.getsize(path + "/" + filename)+ ";" + os.path.getctime(path + "/" + filename) + "\n")
+    except Exception as exc:
+        print(exc)
+        
     # Chown the file to the desired user and group
 
     if (args.user and uid and gid):
