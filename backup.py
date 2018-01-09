@@ -116,7 +116,7 @@ for host in hosts:
     # create file list of backed-up files - filename;filesize;ctime
     try:
         with open(path + "/list.txt", "a") as l:
-            l.write(filename + ";" + os.path.getsize(path + "/" + filename)+ ";" + os.path.getctime(path + "/" + filename) + "\n")
+            l.write(filename + ";" + str(os.path.getsize(path + "/" + filename))+ ";" + str(os.path.getctime(path + "/" + filename)) + "\n")
     except Exception as exc:
         print(exc)
 
