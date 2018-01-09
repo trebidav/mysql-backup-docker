@@ -87,6 +87,11 @@ for host in hosts:
                           network_mode = "container:"+cont.id,
                           volumes      = {os.path.abspath(path): {'bind': '/backup', 'mode': 'rw'}}
                           )
+
+        # create file list of backed-up files
+        with open("list.txt", "a") as l:
+            l.write(filename + ";" + os.path.getsize(path + "/" + filename))
+
     except Exception as exc:
         print(exc)
 
