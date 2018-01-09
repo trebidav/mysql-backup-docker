@@ -114,11 +114,12 @@ for host in hosts:
         exit(1)
 
     # create file list of backed-up files - filename;filesize;ctime
-    with open(path + "/list.txt", "a") as l:
-        l.write(filename + ";" + os.path.getsize(path + "/" + filename)+ ";" + os.path.getctime(path + "/" + filename) + "\n")
+    try:
+        with open(path + "/list.txt", "a") as l:
+            l.write(filename + ";" + os.path.getsize(path + "/" + filename)+ ";" + os.path.getctime(path + "/" + filename) + "\n")
     except Exception as exc:
         print(exc)
-        
+
     # Chown the file to the desired user and group
 
     if (args.user and uid and gid):
