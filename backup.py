@@ -88,9 +88,9 @@ for host in hosts:
                           volumes      = {os.path.abspath(path): {'bind': '/backup', 'mode': 'rw'}}
                           )
 
-        # create file list of backed-up files
-        with open("list.txt", "a") as l:
-            l.write(filename + ";" + os.path.getsize(path + "/" + filename))
+        # create file list of backed-up files - filename;filesize;ctime
+        with open(path + "/list.txt", "a") as l:
+            l.write(filename + ";" + os.path.getsize(path + "/" + filename)+ ";" + os.path.getctime(path + "/" + filename) + "\n")
 
     except Exception as exc:
         print(exc)
