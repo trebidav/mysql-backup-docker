@@ -78,7 +78,7 @@ for host in hosts:
     try: 
         cont = client.containers.get(host["name"])
 
-        print("Backing up " + host["name"] +" to file " + path + "/" + filename )
+        if (args.verbose): print("Backing up " + host["name"] +" to file " + path + "/" + filename )
 
         client.containers.run(image    = "docker-registry.vlp.cz:5000/xtrabackup", 
                           command      = ["/bin/bash", "-c", "set -o pipefail && mkdir -p /backup/temp && innobackupex --user="+host["user"]+" --password="+host["password"]+" --host="+host["name"]+" --stream=tar /var/lib/mysql | gzip - > /backup/temp/"+filename],
